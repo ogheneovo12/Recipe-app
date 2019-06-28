@@ -1,0 +1,38 @@
+<h1 class='text-info text-center mb-3'>{{{title}}}</h1>
+
+<h3>Members</h3>
+<form action="api/members/add" method="post">
+<div class='form-group'>
+<label for="name">Name</label>
+<input type="text" name='name' class='form-control' required = 'required'>
+</div>
+
+<div class='form-group'>
+<label for="name">Enter phone</label>
+<input type="text" name='phone' class='form-control' required = 'required'>
+</div>
+<div class='form-group'>
+<label for="name">Email</label>
+<input type="email" name='email' class='form-control' required = 'required'>
+</div>
+<div class='form-group'>
+
+<input type="submit"  class='form-control btn btn-primary' value="add member">
+</div>
+
+
+
+
+
+
+</form>
+
+<ul class="list-group">
+{{#each members}}
+   <li class='list-group-item' style='display:flex; justify-content:space-between'>{{this.name}}: {{this.email}}<button class="btn btn-danger text-light ml-5">&times</button></li>
+
+{{/each}}
+
+
+
+</ul>

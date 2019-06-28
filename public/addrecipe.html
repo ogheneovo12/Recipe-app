@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel='stylesheet' href="css/bootstrap.min.css">
+  <script src="js/all.js"></script>
+  
+  <title>Add recipe</title>
+  <style>
+    *{
+      padding:0;
+      margin:0;
+      box-sizing:border-box;
+      
+    }
+    input[type='text']{
+      border:none;
+      border-bottom:2px solid #888;
+    }
+    input[type='text']:focus,.btn-inp:focus{
+      box-shadow:none;
+    }
+    .btn-inp{
+      background:#fff;
+      
+    }
+    .gallery-wrapper{
+      border-bottom:3px solid #000;
+    }
+    .gallery{
+      height:40vh;
+      display:grid;
+      grid-template-columns:repeat(2,2fr)
+      
+    }
+    .gallery img{
+      width:100%;
+      height:100%;
+    }
+    .header{
+      position:sticky;
+      min-height:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px;
+      background:#333;
+      u      top:0;
+      left:0;
+      right:0;
+      z-index:400;
+      box-shadow:-1px 1px 1px  1px #888;
+    }
+    .page-title{
+      font-family:'century', monospace,Times;
+      font-weight:bold;
+    }
+    .gallery-footnote{
+      height:30px;
+      z-index:25;
+      position:sticky;
+      bottom:0;
+      margin-top:-30px;
+      border-top:1px solid white;
+      color:#fff;
+      font-weight:bold;
+      background:rgba(0,0,0,0.3);
+      display:flex;
+      align-items:flex-end;
+    }
+    .gallery-footnote span{
+      padding:0px 5px 0 5px;
+      border-right:1px solid #fff;
+    }
+    .ul-ing li{
+      display:flex;
+      justify-content:space-between;
+    }
+    .cancel{
+      bavkgroun:none;
+      color:black;
+    }
+    .add-ing{
+      min-height:100vh;
+    }
+    .footnote{
+      position:fixed;
+      bottom:0;
+      width:100%;
+      height:40px;
+      z-index:200;
+      color:white;
+      padding:10px;
+    
+      
+      
+    }
+  </style>
+</head>
+<body>
+  <div class='header text-light'>
+    <span><i class='fa fa-arrow-left'></i></span>
+    <span class="page-title">Add recipe</span>
+    <span class="options"><i class='fa fa-ellipsis-v'></i></span>
+  </div>
+  <div  class="gallery-wrapper">
+    <div class='gallery'>
+      <img src='img/1.png' >
+      <img src='img/2.png' >
+      <img src='img/fd.png' >
+      <img src='img/img.jpeg' >
+      <img src='img/Images2.jpg'>
+      <img src='img/head.jpeg'>
+    </div>
+    <div class='gallery-footnote'>
+      <span><i class='fa fa-image'></i> </span>
+      <span>add image</span>
+    </div>
+  </div>
+  <div>
+    <form >
+      
+      <div class='input-group mt-2'>
+        <span  class="input-group-btn"> <button  class="btn btn-inp"  type="button"><i class='fa fa-fire'></i> </button> </span> <input  type="text"  class="form-control w-50 " placeholder='Recipe name'>
+      </div>
+      <div class='input-group mt-2'>
+        <span  class="input-group-btn"> <button  class="btn btn-inp "  type="button"><i class='fa fa'></i> </button> </span> <input  type="text"  class="form-control " placeholder="Origin">
+      </div>
+      
+      <div class='input-group mt-2'>
+        <span  class="input-group-btn"> <button  class="btn btn-inp "  type="button"><i class='fa fa-envelope'></i> </button> </span> <input  type="text"  class="form-control " placeholder="Cost">
+        
+      </div>
+      
+      <fieldset class='add-ing'>
+        <legend class='pl-2'>
+          add ingredients
+        </legend>
+        <div class='input-group list-input mt-2'>
+          <input id='ingredient' type="text"  class="form-control " placeholder="Enter ingredient">
+          <button id='btn-add' class='btn btn-info '><i class='fa fa-plus'></i></button>
+        </div>
+        
+        <div class='form-group'>
+          <label  for="name"></label> <select  multiple='multiple' disabled='disabled' hidden='hidden' id='ing' size='3'  class="form-control">
+          </select>
+          <ul class='list-group ul-ing'>
+            <h3 class='text-light mb-2 text-center text-center text-bold bg-info' style='width:70%; margin:0 auto; border-radius:6px; box-shadow:1px 10px 10px #888;'>ingredients</h3>
+            
+          </ul>
+          
+          
+          
+        </div>
+        
+      </fieldset>
+      
+      
+      
+    </form>
+    
+  </div>
+  <div class='footnote container-fluid bg-dark'>
+    <marquee direction='left' step='3'>
+      <b class='m-5'>Every Recipe is unique</b>
+       <b class='m-5'>Every Cook is unique</b>
+        <b class='m-5'>Be Real own ur Recipe</b>
+    </marquee>
+    
+  </div>
+  <script src="js/jquery.min.js"></script>
+  
+  <script>
+    
+    let ingredients =[];
+    const ul=$('.ul-ing')
+    let list=$('#ing');
+    
+    
+    var counter = 0;
+    $('#btn-add').click(e=>{
+      
+      e.preventDefault()
+      const input=document.getElementById('ingredient');
+      let ingredient=input.value.toLowerCase();
+      
+      
+      
+      if(!ingredient){
+        
+        alert('please enter an ingredient')
+      }else{
+        let isNumber =/\d/.test(ingredient)
+        
+        if(isNumber){
+          alert("please dont enter a number")
+        }else{
+          let duplicate = ingredients.some(el => el === ingredient)
+          if(duplicate){
+            alert('ingredient already exists')
+          }else{
+            
+            
+            let option = document.createElement('option');
+            let li =`
+        <li id='item${counter}' class='list-group-item'>
+        <span>${ingredient}</span>
+        <button onclick='removeItem(${counter})' class='btn cancel'><i class='fa fa-times   '></i></button>
+        
+        </li>
+        
+        
+        `;
+        option.selected='selected';
+        option.value=ingredient;
+        option.text=ingredient;
+        option.setAttribute('id',`option${counter}`)
+        list.append(option)
+        ul.append(li)
+        ingredients.push(ingredient);
+        console.log(ingredients)
+        input.value="";
+        counter++;
+        
+        }
+          }}
+      })
+      
+      //add remove event listener
+  function removeItem(id){
+    
+    $("#item"+id).hide("slide")
+    let option=document.querySelector("#option"+id)
+    
+  ingredients = ingredients.filter(item => item !== option.value.toLowerCase() )
+   option.remove()
+  }
+  $('.ul-ing').on('click','.btn',(e)=>{
+    e.preventDefault()
+  })
+  
+    </script>
+</body>
+</html>
