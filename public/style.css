@@ -1,0 +1,158 @@
+*{
+  margin:0;
+  padding:0;
+}
+body{
+
+}
+p{
+  font-family:times;
+  text-align:center;
+}
+
+.error{
+  display:block;
+  position:relative;
+  font-size:8em;
+  line-height:0;
+  text-shadow:10px 10px 10px rgba(0,0,0,0.5);
+  margin:0;
+  margin-top:1em;
+  transition:all;
+  animation-name:entry;
+  animation-duration:2s;
+}
+.error:first-letter{
+  color:red;
+  font-weight:bold;
+}
+
+.errcode{
+  display:block;
+  position:relative;
+  font-size:5em;
+  font-family:cursive;
+  font-weight:bold;
+  text-align:center;
+  animation-name:rot;
+  animation-duration:3s;
+  transition-property:all;
+  transition-duration:2s;
+  margin:40px;
+  }
+
+
+.exclaim{
+  color:purple;
+  font-size:50px;
+  font-weight:bold;
+  animation-name:scl;
+  animation-duration:1s;
+}
+
+.circle{
+  display:block;
+  height:70px;
+  width:70px;
+  border:10px solid red;
+  background:transparent;
+  border-radius:70%;
+  padding:0;
+  box-shadow:2px 2px 20px rgba(0,0,0,0.5);
+  animation-name:flick;
+  animation-duration:100ms;
+  animation-iteration-count:70;
+  
+}
+.diagonal{
+  height:71%;
+  width:0;
+  border:10px solid red;
+  border-left:none;
+  margin:0 auto;
+  transform:rotate(320deg);
+  background:blue;
+  margin-top:px;
+box-shadow:0px 1px 10px rgba(0,0,0,0.5);
+animation-name:flick;
+animation-duration:100ms;
+animation-iteration-count:70;
+
+}
+.errmsg{
+  font-size:40px;
+  font-family:cursive;
+  align-self:center;
+}
+.msg-wrap{
+display:flex;
+justify-content:space-around;
+animation-name:fade;
+opacity:0;
+animation-fill-mode:forwards;;
+animation-delay:3s;
+animation-duration:2s;
+transition:all 2s ease-in-out;
+}
+
+/* animations */
+@keyframes entry{
+  0%{
+    top:-999px;
+    color:red;
+  }
+  25%{
+    color:orange;
+  }
+  50%{
+    color:royalblue;
+  }
+  100%{
+    color:green;
+    top:20px;
+  }
+  
+}
+
+
+@keyframes  scl{
+  0%{
+    transform:scale(0,0)
+  }
+}
+
+
+@keyframes rot{
+  0%{
+    left:-99999px;
+    display:block;
+  }
+  100%{
+    left:70px;
+  }
+}
+
+
+@keyframes flick{
+0%{
+  border-color:red;
+}
+50%{
+  border-color:blue;
+}
+75%{
+  border-color:yellow
+}
+100%{
+  border-color:red;
+}
+
+}
+@keyframes fade{
+from{
+  opacity:0;
+}
+to{
+opacity:1;
+}
+}

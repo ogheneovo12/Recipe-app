@@ -12,6 +12,8 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.1.0",
     "js-logger": "^1.6.0",
+    "node-cron": "^2.0.3",
+    "nodemailer": "^6.2.1",
     "pug": "^2.0.4",
     "uuid": "^3.3.2"
   }

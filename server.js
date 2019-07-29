@@ -8,7 +8,34 @@ const event = new eventEmitter()
 
 const members = require('./Module/Members.js')
 
+//Recipe
+const recipe =[
+  {
+    url:'img/1.png',
+   name:'egusi'
+  },
+  {
+url:'img/fd.png',
+   name:'yam'
 
+
+  },
+  {
+url:'img/2.png',
+   name:'beans'
+
+
+  }
+
+
+  ]
+
+
+
+
+
+
+app.disable('x-powered-by');
 //configure handlebar
 app.engine('.hbs', exphbs({
   defaultLayout: 'main',
@@ -25,9 +52,9 @@ app.use(express.urlencoded({extended:false}))
 
 
 
-app.get('/',(req,res)=>res.render('index',{
+app.get('/recipes',(req,res)=>res.render('getRecipe',{
 title:'Recipe App',
-members
+recipe
 }))
 
 //static file for rendering html files
@@ -42,8 +69,13 @@ app.listen(PORT,()=>console.log("express is running"))
 event.on('start',()=>{
 
 
-            console.log("hello")
-
+          console.log("hello")
 
      })
 app.get('/event',()=>event.emit('start'))
+
+app.get('/headers',  function(req,res){         res.set('Content-Type','text/plain');
+    var  s  =  '';
+   for(var  name  in  req.headers)
+    s  +=  name  +  ': ' +req.headers[name]  +  '\n';
+     res.send(s); });
